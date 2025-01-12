@@ -5,9 +5,8 @@ from pandas import Timestamp
 # Load the data files
 @st.cache_data
 def load_data():
-    strategy_levels_path = "strategy_levels_aligned.csv"  # Ensure relative path
-    portfolio_decomposition_path = "portfolio_decomposition_aligned.csv"  # Ensure relative path
-
+    strategy_levels_path = "strategy_levels_aligned.csv" 
+    portfolio_decomposition_path = "portfolio_decomposition_aligned.csv"  
     # Load CSV files
     strategy_levels = pd.read_csv(strategy_levels_path)
     portfolio_decomposition = pd.read_csv(portfolio_decomposition_path)
@@ -55,7 +54,6 @@ if 'merged_data' in locals() and not merged_data.empty:
         call_positions = data_for_date['call_positions'].iloc[0]
         put_positions = data_for_date['put_positions'].iloc[0]
 
-        # Convert string representations of lists back into DataFrames
         try:
             call_positions_df = pd.DataFrame(eval(call_positions))
             put_positions_df = pd.DataFrame(eval(put_positions))
