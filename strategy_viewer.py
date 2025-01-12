@@ -5,8 +5,8 @@ from pandas import Timestamp
 # Load the data files
 @st.cache
 def load_data():
-    strategy_levels_path = "strategy_levels_aligned.csv"  # Updated to relative path
-    portfolio_decomposition_path = "portfolio_decomposition_aligned.csv"  # Updated to relative path
+    strategy_levels_path = "strategy_levels_aligned.csv"  # Ensure relative path
+    portfolio_decomposition_path = "portfolio_decomposition_aligned.csv"  # Ensure relative path
 
     # Load CSV files
     strategy_levels = pd.read_csv(strategy_levels_path)
@@ -28,6 +28,7 @@ try:
     merged_data = load_data()
 except FileNotFoundError:
     st.error("Required CSV files are missing. Ensure 'strategy_levels_aligned.csv' and 'portfolio_decomposition_aligned.csv' are present in the app directory.")
+    st.stop()
 
 # Streamlit App
 st.title("Options Strategy Viewer")
@@ -71,9 +72,12 @@ if 'merged_data' in locals() and not merged_data.empty:
         st.subheader("Put Options")
         st.table(put_positions_df[columns_to_display])
 
-        # Display underlying delta
-        underlying_delta = data_for_date['underlying_delta'].iloc[0]
-        st.subheader(f"Underlying Delta: {underlying_delta:.2f}")
+        # Fetch and display underlying delta properly
+        if 'underlying_delta' in data_for_date.columns:
+            underlying_delta = data_for_date['underlying_delta'].iloc[0]
+            st.subheader(f"Underlying Delta: {underlying_delta:.2f}")
+        else:
+            st.error("Underlying Delta field is missing from the dataset.")
     else:
         st.warning("No data available for the selected date.")
 else:
