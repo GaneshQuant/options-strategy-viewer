@@ -72,7 +72,7 @@ if 'merged_data' in locals() and not merged_data.empty:
         st.table(put_positions_df[columns_to_display])
 
         # Display underlying delta
-        underlying_delta = data_for_date.iloc[0]['underlying_delta']
+        underlying_delta = data_for_date.['underlying_delta'].iloc[0]
         st.subheader(f"Underlying Delta: {underlying_delta:.2f}")
     else:
         st.warning("No data available for the selected date.")
