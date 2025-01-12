@@ -75,7 +75,7 @@ if 'merged_data' in locals() and not merged_data.empty:
         # Fetch and display underlying delta properly
         if 'underlying_delta' in data_for_date.columns:
             underlying_delta = data_for_date['underlying_delta'].iloc[0]
-            st.subheader(f"Underlying Delta: {underlying_delta:.2f}")
+            st.subheader(f"Underlying Delta: {underlying_delta:.5f}")
         else:
             st.error("Underlying Delta field is missing from the dataset.")
     else:
