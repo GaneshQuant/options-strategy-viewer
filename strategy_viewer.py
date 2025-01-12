@@ -3,7 +3,7 @@ import pandas as pd
 from pandas import Timestamp
 
 # Load the data files
-@st.cache
+@st.cache_data
 def load_data():
     strategy_levels_path = "strategy_levels_aligned.csv"  # Ensure relative path
     portfolio_decomposition_path = "portfolio_decomposition_aligned.csv"  # Ensure relative path
