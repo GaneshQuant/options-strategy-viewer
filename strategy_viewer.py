@@ -5,7 +5,7 @@ import pandas as pd
 @st.cache
 def load_data():
     strategy_levels_path = "strategy_levels_aligned.csv"
-    portfolio_decomposition_path = "/content/sample_data/portfolio_decomposition_aligned.csv"
+    portfolio_decomposition_path = "portfolio_decomposition_aligned.csv"
 
     strategy_levels = pd.read_csv(strategy_levels_path)
     portfolio_decomposition = pd.read_csv(portfolio_decomposition_path)
