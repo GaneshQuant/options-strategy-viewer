@@ -94,3 +94,23 @@ def backtest_strategy(data, start_strategy_level=100, end_date=pd.Timestamp("202
         strategy_levels.append(strategy_level)
 
     return strategy_levels, portfolio_decomposition
+
+
+    # Load your input data
+    data_preprocessed = pd.read_csv('/path/to/your/input_data.csv')  # Adjust path
+
+    # Run the aligned backtest
+    strategy_levels_aligned, portfolio_decomposition_aligned = backtest_strategy_aligned(data_preprocessed)
+
+    # Save the aligned results to CSV
+    strategy_levels_aligned_path = "strategy_levels_aligned.csv"
+    portfolio_decomposition_aligned_path = "portfolio_decomposition_aligned.csv"
+
+    results_aligned = pd.DataFrame({'Date': data_preprocessed['AsOfDate'].unique(), 'Strategy Level': strategy_levels_aligned})
+    portfolio_df_aligned = pd.DataFrame(portfolio_decomposition_aligned)
+
+    results_aligned.to_csv(strategy_levels_aligned_path, index=False)
+    portfolio_df_aligned.to_csv(portfolio_decomposition_aligned_path, index=False)
+
+
+
